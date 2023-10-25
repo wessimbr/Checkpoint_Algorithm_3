@@ -1,22 +1,20 @@
 ALGORITHM algorithm_3_insertion_sort
 VAR
-    arr : ARRAY_OF INTEGER;  // The array to be sorted
-    n, i, j, key : INTEGER;
+    arr  : ARRAY_OF INTEGER[10];
+    i,j , Temp : INTEGER
 BEGIN
-    n := arr.length;  // Get the length of the array
+    FOR i FROM 0 TO arr.length-1 STEP  1  DO
+         FOR (j = i+1 and j>0)  STEP -1  DO
 
-    // Start from the second element (index 1) and go to the end of the array
-    FOR i FROM 1 TO n-1 DO
-        key := arr[i];  // Store the current element to be inserted
-        j := i - 1;
-
-        // Move elements of arr[0..i-1] that are greater than the key to the right
-        WHILE (j >= 0 AND arr[j] > key) DO
-            arr[j + 1] := arr[j];
-            j := j - 1;
-        END_WHILE
-
-        // Insert the key into the correct position in the sorted subarray
-        arr[j + 1] := key;
+          // Check if the current element is smaller than the previous element
+            IF (arr[j] < arr[j-1]) THEN
+                Temp := arr [j]
+                arr[j] := arr[j-1]
+                arr [j-1] := Temp
+                
+            END_IF
+         END_FOR
+        
     END_FOR
+
 END
